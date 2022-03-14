@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/history"
+        android:icon="@drawable/ic_history_fragment"
+        android:id="@+id/historyFragment"/>
+    <item android:title="@string/main"
+        android:icon="@drawable/ic_main_fragment"
+        android:id="@+id/mainFragment"/>
+    <item android:title="@string/live"
+        android:icon="@drawable/ic_live_fragment"
+        android:id="@+id/livePriceFragment"/>
+
+
+
+</menu>

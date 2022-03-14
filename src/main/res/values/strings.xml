@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">PayseraTest</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="history">history</string>
+    <string name="main">main</string>
+    <string name="live">live</string>
+    <string name="currency_exchange">CURRENCY EXCHANGE</string>
+    <string name="sell">sell</string>
+    <string name="receive">receive</string>
+    <string name="submit">submit</string>
+    <string name="my_balances">MY BALANCES</string>
+    <string name="trades_history">TRADE HISTORY</string>
+    <string name="live_prices">live_prices</string>
+    <string name="check_spinner">check spinners</string>
+    <string name="low_price">your credit is low</string>
+    <string name="ok">ok</string>
+    <string name="done">Done</string>
+    <string name="no_history">no history yet</string>
+</resources>

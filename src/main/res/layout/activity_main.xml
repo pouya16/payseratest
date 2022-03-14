@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_trades"
+    tools:context=".MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:id="@+id/fragmentContainer"
+        android:layout_marginBottom="@dimen/btmApbarSize"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation_main"/>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomAppBar"
+        android:layout_gravity="bottom"
+        android:background="@color/bg_appbar"
+        android:backgroundTint="@color/bg_appbar">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btm_navigation"
+            app:itemIconTint="@color/selector_bottom_navigation"
+            app:itemTextColor="@color/selector_bottom_navigation"
+            android:backgroundTint="@android:color/transparent"
+            android:background="@android:color/transparent"
+            app:menu="@menu/menu_btm_navigation"/>
+
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
