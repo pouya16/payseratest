@@ -1,6 +1,7 @@
 package com.app.payseratest.api
 
 import android.content.Context
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -30,8 +31,11 @@ class ApiClient {
     }
 
     fun getCoinsApi(context: Context?){
+
         coinsMutableList = MutableLiveData()
+
         retrieveCoins(context)
+
 
     }
 
@@ -52,11 +56,21 @@ class ApiClient {
 
 
     fun retrieveCoins(context: Context?){
+        val timer = object: CountDownTimer(5000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                // do something
+            }
+            override fun onFinish() {
+                getCoinsApi(context)
+            }
+        }
         var apiClient: ApiClient = ApiClient().getInstance()
         var queue : RequestQueue = Volley.newRequestQueue(context)
         var url = "http://api.exchangeratesapi.io/latest?access_key=570702a043df572d7cd9036ede4cc301"
         Log.i("Log1", "url is: $url")
         try {
+
+            timer.start()
             val stringRequest: StringRequest = object : StringRequest(
                 Method.GET, url,
                 Response.Listener { response ->
@@ -76,6 +90,8 @@ class ApiClient {
             }
             queue.add<String>(stringRequest)
         } catch (e: Exception) {
+
+            timer.start()
             Log.i("Log1", "exception is: $e")
         }
 
