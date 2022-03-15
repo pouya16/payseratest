@@ -17,4 +17,5 @@
     <string name="ok">ok</string>
     <string name="done">Done</string>
     <string name="no_history">no history yet</string>
+    <string name="no_eq_need">dont need to convert</string>
 </resources>

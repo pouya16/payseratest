@@ -122,27 +122,34 @@ class MainFragment : Fragment(){
 
     fun submitTransaction(){
         if(receivePosition!=-1&&sellPosition!=-1){
-            if(binding.txtSell.text.toString().toDouble()<=remainBalance&&binding.txtSell.text.toString().toDouble()>0){
-                var fromBalance = remainBalance - binding.txtSell.text.toString().toDouble()
-                var toBalance:Double = 0.0
-                var fromName = currunciesList!!.get(findedSellPosition).curr
-                var toName = binding.spinnerReceive.selectedItem.toString()
-                updateBalance(fromName, fromBalance)
-                if(binding.txtReceive.text.toString().toDouble()>0){
-                    if(balanceDao!!.getBalance(binding.spinnerReceive.selectedItem.toString())!=null){
-                        toBalance = balanceDao!!
-                            .getBalance(toName).remain +
-                                binding.txtReceive.text.toString().toDouble()
-                        updateBalance(toName,toBalance - calculateCommision())
-                    }else{
-                        toBalance = binding.txtReceive.text.toString().toDouble()
-                        balanceDao!!.insertOne(BalanceModel(toName,toBalance))
-                    }
+                if(binding.txtSell.text.toString().toDouble()<=remainBalance&&binding.txtSell.text.toString().toDouble()>0){
+                    var fromBalance = remainBalance - binding.txtSell.text.toString().toDouble()
+                    var toBalance:Double = 0.0
+                    var fromName = currunciesList!!.get(findedSellPosition).curr
+                    var toName = binding.spinnerReceive.selectedItem.toString()
+                    if(fromName.compareTo(toName)!=0){
+                        updateBalance(fromName, fromBalance)
+                        if(binding.txtReceive.text.toString().toDouble()>0){
+                            if(balanceDao!!.getBalance(binding.spinnerReceive.selectedItem.toString())!=null){
+                                toBalance = balanceDao!!
+                                    .getBalance(toName).remain +
+                                        binding.txtReceive.text.toString().toDouble()
+                                updateBalance(toName,toBalance - calculateCommision())
+                            }else{
+                                toBalance = binding.txtReceive.text.toString().toDouble()
+                                balanceDao!!.insertOne(BalanceModel(toName,toBalance))
+                            }
+                        }
+                        transactionsDao!!.insertTransaction(
+                            TransactionsModel(
+                                fromName, binding.txtSell.text.toString().toDouble(), toName, toBalance)
+                        )
+                        updateChanges()
+                        showAlert(fromName,binding.txtSell.text.toString().toDouble(),toName,binding.txtReceive.text.toString().toDouble(),calculateCommision())
+
+                }else{
+                        Toast.makeText(context, R.string.no_eq_need,Toast.LENGTH_SHORT).show()
                 }
-                transactionsDao!!.insertTransaction(TransactionsModel(
-                    fromName, binding.txtSell.text.toString().toDouble(), toName, toBalance))
-                updateChanges()
-                showAlert(fromName,binding.txtSell.text.toString().toDouble(),toName,toBalance,calculateCommision())
             }
         }else{
             Toast.makeText(context, R.string.check_spinner,Toast.LENGTH_SHORT).show()
